@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import logo from '../css/logo.svg';
 import '../css/App.css';
+const Big = require('big.js');
 
 function App() {
   return (
@@ -26,5 +28,14 @@ function App() {
     </div>
   );
 }
+
+// Specifies the default values for props:
+//App.defaultProps = {
+//  onClick: null,
+//};
+//
+//App.propTypes = {
+//  onClick: PropTypes.func,
+//};
 
 export default App;
