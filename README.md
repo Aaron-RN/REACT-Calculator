@@ -1,0 +1,2 @@
+# REACT-Calculator
+In this project you will learn how to build a very simple React application. You will work in a real-world project for a fictional company that requires your help. The project has been split into multiple milestones, and each milestone has functional and technical requirements that you will need to implement.  The original version of this content can be found and edited [here](https://github.com/microverseinc/project-react-calculator/blob/master/README.md).
