@@ -3,7 +3,7 @@ In this project you will learn how to build a very simple React application. You
 
 ![screenshot](./screenshot.png)
 
-## [Live DEMO Link]()
+## [Live DEMO Link](https://react-calculator-aaronrn.netlify.com/)
 
 ## Built With
 
