@@ -30,9 +30,19 @@
   box-shadow: 14px 22px 30px #333;
 }
 
+.history{
+  display: flex;
+  position: absolute;
+  font-size: 15px;
+  color: grey;
+  top:10%;
+  padding-right: 40px;
+  text-align: right;
+  height: 50px;
+}
+
 .display {
   position: relative;
-  overflow: hidden;
   height: 100px;
   display: flex;
   flex-direction: row;

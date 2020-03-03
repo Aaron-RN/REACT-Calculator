@@ -3,11 +3,12 @@ import React from 'react';
 import logo from '../css/logo.svg';
 
 function Display(props) {
-  const { value } = props;
+  const { value, history } = props;
 
   return (
     <div className="display">
-      {value}
+      <div className='history'>{history}</div>
+      {value || '0'}
       <img src={logo} className="App-logo" alt="logo" />
     </div>
   );
