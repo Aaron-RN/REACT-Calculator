@@ -20,13 +20,14 @@
 .calculator{
   display: flex;
   flex-direction: column;
-  width: 700px;
-  margin: 80px auto;
+  max-width: 700px;
+  min-width: 420px;
+  margin: 40px auto;
   overflow: hidden;
   border: 2px solid #000;
   border-right-color: #999;
   border-bottom-color: #666;
-  box-shadow: 14px 24px 30px #333;
+  box-shadow: 14px 22px 30px #333;
 }
 
 .display {
