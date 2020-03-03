@@ -22,14 +22,13 @@ function calculate(obj, btn){
     
     if (isNext){
       const alreadyUsed = patt.test(next);
-      console.log('next');
       if (alreadyUsed) {return {total, next, operation};}
       return {total: total, next: (next || '0') + '.', operation};}
     else{
       const alreadyUsed = patt.test(total);
-      console.log('total', operation);
+      if (operation) { return {total, next: (next || '0') + '.', operation};}
 
-      if (alreadyUsed) {return {total, next, operation};}      
+      if (alreadyUsed) {return {total, next, operation};}  
       return {total: (total || '0') + '.', next: next, operation};}
   }
   if (btn === '='){
