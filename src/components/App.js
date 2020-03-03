@@ -1,42 +1,37 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
-import logo from '../css/logo.svg';
 import '../css/App.css';
+import Display from './display';
+import ButtonPanel from './buttonPanel';
 
 // const Big = require('big.js');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      result: '',
+    };
+  }
 
-// Specifies the default values for props:
-// App.defaultProps = {
-//  onClick: null,
-// };
-//
-// App.propTypes = {
-//  onClick: PropTypes.func,
-// };
+  handleClick(event) {
+    const btn = event.target.textContent;
+    this.setState({
+      result: btn,
+    });
+  }
+
+  render() {
+    const { result } = this.state;
+    return (
+      <div className="calculator">
+        <header>
+          <Display value={result} />
+        </header>
+        <ButtonPanel onClick={this.handleClick} />
+      </div>
+    );
+  }
+}
 
 export default App;
