@@ -3,10 +3,10 @@ import React from 'react';
 
 function Button(props) {
   const { onClick, name } = props;
-  const isZero = name === '0' ? 'btn-zero' : false;
+  const isZero = name === '0' ? ' btn-zero' : '';
   return (
     <button
-      className={`btn ${isZero}`}
+      className={`btn${isZero}`}
       type="button"
       onClick={onClick}
     >
