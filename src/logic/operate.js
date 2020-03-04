@@ -2,7 +2,7 @@ const Big = require('big.js');
 
 function operate(numOne, numTwo, operation) {
   const x = numOne ? new Big(numOne) : new Big(0);
-  const y = numTwo ? new Big(numTwo) : new Big(0);
+  const y = numTwo ? new Big(numTwo) : new Big(x);
 
   if (!operation) return '0';
 
