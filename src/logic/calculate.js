@@ -8,11 +8,14 @@ function calculate(obj, btn) {
   }
   if (btn === '+/-') {
     const isNext = !!next;
+    if (operation && !isNext) {return { total, next: (parseFloat(total) * -1).toString(), operation };}
+    
     const result = isNext ? parseFloat(next) * -1 : parseFloat(total) * -1;
     if (isNext) { return { total, next: result.toString(), operation }; }
     return { total: result.toString(), next, operation };
   }
   if (btn === '+' || btn === '-' || btn === 'x' || btn === '÷' || btn === '%') {
+    console.log(total + ' ', operation,' next: ' + next);
     return { total: operate(total, next, operation), next: '', operation: btn };
   }
   if (btn === '.') {
@@ -32,6 +35,7 @@ function calculate(obj, btn) {
     return { total: `${total || '0'}.`, next, operation };
   }
   if (btn === '=') {
+    console.log(total + ' ', operation,' next: ' + next);
     return { total: operate(total, next, operation), next: '', operation: null };
   }
 
