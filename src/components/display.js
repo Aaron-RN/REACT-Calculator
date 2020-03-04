@@ -7,7 +7,7 @@ function Display(props) {
 
   return (
     <div className="display">
-      <div className='history'>{history}</div>
+      <div className="history">{history}</div>
       {value || '0'}
       <img src={logo} className="App-logo" alt="logo" />
     </div>
@@ -17,10 +17,12 @@ function Display(props) {
 // Specifies the default values for props:
 Display.defaultProps = {
   value: '0',
+  history: '',
 };
 
 Display.propTypes = {
   value: PropTypes.string,
+  history: PropTypes.string,
 };
 
 export default Display;
