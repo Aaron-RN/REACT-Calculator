@@ -8,6 +8,8 @@ function calculate(obj, btn) {
     return { total: '', next: '', operation: false };
   }
   if (btn === '+/-') {
+    // returns the total value into next when the '+/-' button is pressed after
+    // supplying a operator but no value for next
     if (operation && !isNext) {
       return {
         total,
@@ -43,7 +45,7 @@ function calculate(obj, btn) {
     if (isNext) {
       return { total: result, next: '', operation: null };
     }
-
+    // Returns the value of total to next if '=' was pressed without supplying a next value
     return { total: result, next: total, operation: null };
   }
 

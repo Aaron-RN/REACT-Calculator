@@ -66,17 +66,22 @@ class App extends React.Component {
       this.handleState(calcResult, result, hist);
       return;
     }
+    // If not operation has been chosen and a number button is pressed
+    // this number is selected as the total value
     if (!operation && numbers.indexOf(btn) !== -1) {
       const calc = { total: total + btn, next, operation };
       this.handleState(calc, total + btn, history);
     } else if (operation && numbers.indexOf(btn) !== -1) {
+      // If an operation has already been chosen and a number button is pressed...
       const calc = { total, next: next + btn, operation };
       this.handleState(calc, next + btn, history);
     } else if (!operation && functions.indexOf(btn) !== -1) {
+      // If no operation has been chosen and a non numeric button is pressed...
       const calc = { total, next, operation: btn };
       const historyNew = total ? history + total + btn : `0${btn}`;
       this.handleState(calc, result, historyNew);
     } else if (operation && total && next) {
+      // If the calculator already has values for total, next and operation states...
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
