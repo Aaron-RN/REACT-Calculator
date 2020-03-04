@@ -39,7 +39,7 @@ class App extends React.Component {
       this.handleState(calc, '0', '');
       return;
     }
-    if (btn === '+/-') {
+    if (btn === '+/-' && (total || next)) {
       const calcResult = calculate(calculation, btn);
       const result = calcResult.next || calcResult.total;
       this.handleState(calcResult, result, history + btn);

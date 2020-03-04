@@ -9,7 +9,6 @@ function calculate(obj, btn) {
   if (btn === '+/-') {
     const isNext = !!next;
     const result = isNext ? parseFloat(next) * -1 : parseFloat(total) * -1;
-    if (isNaN(result)) { return { total: '0', next: '0', operation: false }; }
     if (isNext) { return { total, next: result.toString(), operation }; }
     return { total: result.toString(), next, operation };
   }
