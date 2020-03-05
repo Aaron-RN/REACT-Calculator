@@ -15,6 +15,10 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
+  
   resetCalc(result) {
     const { calculation } = this.state;
     const calc = calculate(calculation, 'AC');
@@ -35,6 +39,21 @@ class App extends React.Component {
     });
   }
 
+  handleKeyDown(event){
+    const { keyCode, shiftKey } =  event;
+    const functions = [111, 106, 107, 109, 191, 189];
+    const shiftFunctions = [53, 56, 187];
+    console.log(event.keyCode);
+    if (!shiftKey){
+      if ((keyCode >= 48 && keyCode <=57) || (keyCode >= 96 && keyCode <= 105)){
+        console.log('number');
+      }
+    }
+    if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1){
+      console.log('function');
+    }
+  }
+  
   handleClick(event) {
     const btn = event.target.textContent;
     const { calculation, history, result } = this.state;
