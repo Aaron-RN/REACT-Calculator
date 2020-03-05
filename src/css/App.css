@@ -43,6 +43,7 @@
   text-align: right;
   height: 20px;
   overflow: hidden;
+  max-width: 90%;
 }
 
 .display {
