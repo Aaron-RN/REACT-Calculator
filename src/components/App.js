@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    document.addEventListener("keydown", this.handleKeyDown);
+    document.addEventListener("keydown", (event) => this.handleKeyDown(event));
   }
   
   resetCalc(result) {
@@ -41,16 +41,32 @@ class App extends React.Component {
 
   handleKeyDown(event){
     const { keyCode, shiftKey } =  event;
+    const { calculation, history } = this.state;
+    const { total, next, operation } = calculation;
     const functions = [111, 106, 107, 109, 191, 189];
     const shiftFunctions = [53, 56, 187];
+    let btn = String.fromCharCode(keyCode);
     console.log(event.keyCode);
     if (!shiftKey){
       if ((keyCode >= 48 && keyCode <=57) || (keyCode >= 96 && keyCode <= 105)){
-        console.log('number');
+        if (keyCode >= 96) { btn = String.fromCharCode(keyCode-48); }
+        if (!operation) {
+          const calc = { total: total + btn, next, operation };
+          this.handleState(calc, total + btn, history);
+        } else if (operation) {
+          // If an operation has already been chosen and a number button is pressed...
+          const calc = { total, next: next + btn, operation };
+          this.handleState(calc, next + btn, history);
+        } 
       }
     }
     if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1){
-      console.log('function');
+      if (keyCode === 53){ btn = '%';}
+      if (keyCode === 56 || keyCode === 106){ btn = '*';}
+      if (keyCode === 187 || keyCode === 107){ btn = '+';}
+      if (keyCode === 191 || keyCode === 111){ btn = '÷';}
+      if (keyCode === 189 || keyCode === 109){ btn = '-';}
+      
     }
   }
   
