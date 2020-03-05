@@ -6,6 +6,7 @@ function Button(props) {
   const isZero = name === '0' ? ' btn-zero' : '';
   return (
     <button
+      id={name}
       className={`btn${isZero}`}
       type="button"
       onClick={onClick}

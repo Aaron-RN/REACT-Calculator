@@ -15,10 +15,10 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount(){
-    document.addEventListener("keydown", (event) => this.handleKeyDown(event));
+  componentDidMount() {
+    document.addEventListener('keydown', event => this.handleKeyDown(event));
   }
-  
+
   resetCalc(result) {
     const { calculation } = this.state;
     const calc = calculate(calculation, 'AC');
@@ -39,16 +39,16 @@ class App extends React.Component {
     });
   }
 
-  handleKeyDown(event){
-    const { keyCode, shiftKey } =  event;
+  handleKeyDown(event) {
+    const { keyCode, shiftKey } = event;
     const { calculation, history, result } = this.state;
     const { total, next, operation } = calculation;
     const functions = [111, 106, 107, 109, 191, 189];
     const shiftFunctions = [53, 56, 187];
     let btn = String.fromCharCode(keyCode);
-    if (!shiftKey){
-      if ((keyCode >= 48 && keyCode <=57) || (keyCode >= 96 && keyCode <= 105)){
-        if (keyCode >= 96) { btn = String.fromCharCode(keyCode-48); }
+    if (!shiftKey) {
+      if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+        if (keyCode >= 96) { btn = String.fromCharCode(keyCode - 48); }
         if (!operation) {
           const calc = { total: total + btn, next, operation };
           this.handleState(calc, total + btn, history);
@@ -56,9 +56,9 @@ class App extends React.Component {
           // If an operation has already been chosen and a number button is pressed...
           const calc = { total, next: next + btn, operation };
           this.handleState(calc, next + btn, history);
-        } 
+        }
       }
-      if (keyCode === 110 || keyCode === 190){
+      if (keyCode === 110 || keyCode === 190) {
         btn = '.';
         const calcResult = calculate(calculation, btn);
         const result = calcResult.next || calcResult.total;
@@ -66,7 +66,7 @@ class App extends React.Component {
         return;
       }
 
-      if (keyCode === 13){
+      if (keyCode === 13) {
         btn = '=';
         const calcResult = calculate(calculation, btn);
         const result = calcResult.total;
@@ -78,14 +78,14 @@ class App extends React.Component {
         return;
       }
     }
-    
-    if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1){
-      if (keyCode === 53){ btn = '%';}
-      if (keyCode === 56 || keyCode === 106){ btn = 'x';}
-      if (keyCode === 187 || keyCode === 107){ btn = '+';}
-      if (keyCode === 191 || keyCode === 111){ btn = '÷';}
-      if (keyCode === 189 || keyCode === 109){ btn = '-';}
-      
+
+    if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1) {
+      if (keyCode === 53) { btn = '%'; }
+      if (keyCode === 56 || keyCode === 106) { btn = 'x'; }
+      if (keyCode === 187 || keyCode === 107) { btn = '+'; }
+      if (keyCode === 191 || keyCode === 111) { btn = '÷'; }
+      if (keyCode === 189 || keyCode === 109) { btn = '-'; }
+
       if (!operation) {
         // If no operation has been chosen and a non numeric button is pressed...
         const calc = { total, next, operation: btn };
@@ -102,7 +102,7 @@ class App extends React.Component {
       }
     }
   }
-  
+
   handleClick(event) {
     const btn = event.target.textContent;
     const { calculation, history, result } = this.state;
