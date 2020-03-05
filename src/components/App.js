@@ -80,7 +80,7 @@ class App extends React.Component {
       const calc = { total, next, operation: btn };
       const historyNew = total ? history + total + btn : `0${btn}`;
       this.handleState(calc, result, historyNew);
-    } else if (operation && total && next) {
+    } else if (operation && (total || next)) {
       // If the calculator already has values for total, next and operation states...
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
