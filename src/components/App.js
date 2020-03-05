@@ -61,8 +61,9 @@ class App extends React.Component {
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
-      calcResult.total = '';
       const hist = `${history + (next || calcResult.next) + btn + result} `;
+      calcResult.total = '';
+      calcResult.next = '';
       this.handleState(calcResult, result, hist);
       return;
     }
@@ -82,6 +83,7 @@ class App extends React.Component {
       this.handleState(calc, result, historyNew);
     } else if (operation && (total || next)) {
       // If the calculator already has values for total, next and operation states...
+      if (!next) return;
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
