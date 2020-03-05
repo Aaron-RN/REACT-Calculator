@@ -41,12 +41,11 @@ class App extends React.Component {
 
   handleKeyDown(event){
     const { keyCode, shiftKey } =  event;
-    const { calculation, history } = this.state;
+    const { calculation, history, result } = this.state;
     const { total, next, operation } = calculation;
     const functions = [111, 106, 107, 109, 191, 189];
     const shiftFunctions = [53, 56, 187];
     let btn = String.fromCharCode(keyCode);
-    console.log(event.keyCode);
     if (!shiftKey){
       if ((keyCode >= 48 && keyCode <=57) || (keyCode >= 96 && keyCode <= 105)){
         if (keyCode >= 96) { btn = String.fromCharCode(keyCode-48); }
@@ -59,14 +58,48 @@ class App extends React.Component {
           this.handleState(calc, next + btn, history);
         } 
       }
+      if (keyCode === 110 || keyCode === 190){
+        btn = '.';
+        const calcResult = calculate(calculation, btn);
+        const result = calcResult.next || calcResult.total;
+        this.handleState(calcResult, result, history);
+        return;
+      }
+
+      if (keyCode === 13){
+        btn = '=';
+        const calcResult = calculate(calculation, btn);
+        const result = calcResult.total;
+        if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
+        const hist = `${history + (next || calcResult.next) + btn + result} `;
+        calcResult.total = '';
+        calcResult.next = '';
+        this.handleState(calcResult, result, hist);
+        return;
+      }
     }
+    
     if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1){
       if (keyCode === 53){ btn = '%';}
-      if (keyCode === 56 || keyCode === 106){ btn = '*';}
+      if (keyCode === 56 || keyCode === 106){ btn = 'x';}
       if (keyCode === 187 || keyCode === 107){ btn = '+';}
       if (keyCode === 191 || keyCode === 111){ btn = '÷';}
       if (keyCode === 189 || keyCode === 109){ btn = '-';}
       
+      if (!operation) {
+        // If no operation has been chosen and a non numeric button is pressed...
+        const calc = { total, next, operation: btn };
+        const historyNew = total ? history + total + btn : `0${btn}`;
+        this.handleState(calc, result, historyNew);
+      } else if (operation && (total || next)) {
+        // If the calculator already has values for total, next and operation states...
+        if (!next) return;
+        const calcResult = calculate(calculation, btn);
+        const result = calcResult.total;
+        if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
+
+        this.handleState(calcResult, result, history + next + btn);
+      }
     }
   }
   
