@@ -3,6 +3,7 @@ import '../css/App.css';
 import Display from './display';
 import ButtonPanel from './buttonPanel';
 import calculate from '../logic/calculate';
+import {isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign} from '../logic/keypress';
 
 class App extends React.Component {
   constructor() {
@@ -47,8 +48,8 @@ class App extends React.Component {
     const shiftFunctions = [53, 56, 187];
     let btn = String.fromCharCode(keyCode);
     if (!shiftKey) {
-      if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
-        if (keyCode >= 96) { btn = String.fromCharCode(keyCode - 48); }
+      if (isNumber(keyCode)) {
+        if (isNumpad(keyCode)) { btn = String.fromCharCode(keyCode - 48); }
         if (!operation) {
           const calc = { total: total + btn, next, operation };
           this.handleState(calc, total + btn, history);
@@ -58,7 +59,7 @@ class App extends React.Component {
           this.handleState(calc, next + btn, history);
         }
       }
-      if (keyCode === 110 || keyCode === 190) {
+      if (isDecimal(keyCode)) {
         btn = '.';
         const calcResult = calculate(calculation, btn);
         const result = calcResult.next || calcResult.total;
@@ -66,7 +67,7 @@ class App extends React.Component {
         return;
       }
 
-      if (keyCode === 13) {
+      if (isEqualSign(keyCode)) {
         btn = '=';
         const calcResult = calculate(calculation, btn);
         const result = calcResult.total;
@@ -80,11 +81,7 @@ class App extends React.Component {
     }
 
     if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1) {
-      if (keyCode === 53) { btn = '%'; }
-      if (keyCode === 56 || keyCode === 106) { btn = 'x'; }
-      if (keyCode === 187 || keyCode === 107) { btn = '+'; }
-      if (keyCode === 191 || keyCode === 111) { btn = '÷'; }
-      if (keyCode === 189 || keyCode === 109) { btn = '-'; }
+      btn = convertKeyToBtn(keyCode);
 
       if (!operation) {
         // If no operation has been chosen and a non numeric button is pressed...
