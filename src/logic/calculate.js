@@ -5,7 +5,7 @@ function calculate(obj, btn) {
   const isNext = !!next; // Checks if the next variable has a value
 
   if (btn === 'AC') {
-    return { total: '', next: '', operation: false };
+    return { total: '', next: '', operation: null };
   }
   if (btn === '+/-') {
     // returns the total value into next when the '+/-' button is pressed after

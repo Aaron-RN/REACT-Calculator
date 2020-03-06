@@ -93,7 +93,7 @@
   border: 1px solid #000;
 }
 .btn:focus{
-  outline: none;
+  outline: 1px solid #666;
 }
 .btn:hover{
   outline: none;

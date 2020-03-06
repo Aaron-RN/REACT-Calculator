@@ -101,6 +101,7 @@ class App extends React.Component {
   }
 
   handleClick(event) {
+    event.target.blur(); // Removes focus from button after clicking
     const btn = event.target.textContent;
     const { calculation, history, result } = this.state;
     const { total, next, operation } = calculation;
