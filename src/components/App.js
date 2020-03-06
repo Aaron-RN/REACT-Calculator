@@ -3,7 +3,9 @@ import '../css/App.css';
 import Display from './display';
 import ButtonPanel from './buttonPanel';
 import calculate from '../logic/calculate';
-import {isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign} from '../logic/keypress';
+import {
+  isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign,
+} from '../logic/keypress';
 
 class App extends React.Component {
   constructor() {
