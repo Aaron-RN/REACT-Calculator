@@ -4,7 +4,7 @@ import Display from './display';
 import ButtonPanel from './buttonPanel';
 import calculate from '../logic/calculate';
 import {
-  isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign,
+  isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign, isBackspace,
 } from '../logic/keypress';
 
 class App extends React.Component {
@@ -61,6 +61,7 @@ class App extends React.Component {
           this.handleState(calc, next + btn, history);
         }
       }
+      if (isBackspace(keyCode)) { this.resetCalc(); return; }
       if (isDecimal(keyCode)) {
         btn = '.';
         const calcResult = calculate(calculation, btn);

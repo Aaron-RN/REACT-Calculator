@@ -26,6 +26,11 @@ function isEqualSign(keyCode) {
   return false;
 }
 
+function isBackspace(keyCode) {
+  if (keyCode === 8 || keyCode === 46) { return true; }
+  return false;
+}
+
 function convertKeyToBtn(keyCode) {
   let btn;
 
@@ -39,5 +44,5 @@ function convertKeyToBtn(keyCode) {
 }
 
 export {
-  isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign,
+  isNumber, isNumpad, convertKeyToBtn, isDecimal, isEqualSign, isBackspace,
 };
