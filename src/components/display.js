@@ -2,27 +2,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import logo from '../css/logo.svg';
 
-function Display(props) {
-  const { value, history } = props;
-
+const Display = ({ value }) => {
   return (
     <div className="display">
-      <div className="history">{history}</div>
-      {value || '0'}
+      {value}
       <img src={logo} className="App-logo" alt="logo" />
     </div>
   );
-}
+};
 
 // Specifies the default values for props:
 Display.defaultProps = {
   value: '0',
-  history: '',
 };
 
 Display.propTypes = {
   value: PropTypes.string,
-  history: PropTypes.string,
 };
 
 export default Display;
