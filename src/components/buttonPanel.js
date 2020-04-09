@@ -4,10 +4,10 @@ import Button from './button';
 
 
 class ButtonPanel extends React.Component {
-  renderButton(name) {
+  renderButton(name, color, isWide = false) {
     const { onClick } = this.props;
     return (
-      <Button onClick={onClick} name={name} />
+      <Button onClick={onClick} name={name} color={color} wide={isWide} />
     );
   }
 
@@ -15,32 +15,32 @@ class ButtonPanel extends React.Component {
     return (
       <div className="panel">
         <div className="btn-row">
-          {this.renderButton('AC')}
-          {this.renderButton('+/-')}
-          {this.renderButton('%')}
+          {this.renderButton('AC', '#CCC')}
+          {this.renderButton('+/-', '#CCC')}
+          {this.renderButton('%', '#CCC')}
           {this.renderButton('÷')}
         </div>
         <div className="btn-row">
-          {this.renderButton('7')}
-          {this.renderButton('8')}
-          {this.renderButton('9')}
+          {this.renderButton('7', '#CCC')}
+          {this.renderButton('8', '#CCC')}
+          {this.renderButton('9', '#CCC')}
           {this.renderButton('x')}
         </div>
         <div className="btn-row">
-          {this.renderButton('4')}
-          {this.renderButton('5')}
-          {this.renderButton('6')}
+          {this.renderButton('4', '#CCC')}
+          {this.renderButton('5', '#CCC')}
+          {this.renderButton('6', '#CCC')}
           {this.renderButton('-')}
         </div>
         <div className="btn-row">
-          {this.renderButton('1')}
-          {this.renderButton('2')}
-          {this.renderButton('3')}
+          {this.renderButton('1', '#CCC')}
+          {this.renderButton('2', '#CCC')}
+          {this.renderButton('3', '#CCC')}
           {this.renderButton('+')}
         </div>
         <div className="btn-row">
-          {this.renderButton('0')}
-          {this.renderButton('.')}
+          {this.renderButton('0', '#CCC', true)}
+          {this.renderButton('.', '#CCC')}
           {this.renderButton('=')}
         </div>
       </div>
