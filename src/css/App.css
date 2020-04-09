@@ -30,19 +30,9 @@
   box-shadow: 14px 22px 30px #333;
 }
 
-.history{
-  display: flex;
-  position: absolute;
-  font-size: 15px;
-  color: grey;
-  top:10%;
-  padding-right: 40px;
-  text-align: right;
-  height: 50px;
-}
-
 .display {
   position: relative;
+  overflow: hidden;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -79,11 +69,9 @@
   cursor: pointer;
   width: calc(100% / 4);
   height: auto;
-  background-color: #CCC;
   border: 1px solid #AAA;
 }
 .btn:last-child{
-  background: #D84;
   border: 1px solid #000;
 }
 .btn:focus{
@@ -95,8 +83,19 @@
   border-top: 2px solid #999;
   border-left: 2px solid #999;
 }
-.btn-zero{
+.btn:last-child:hover{
+  border: 1px solid #eb9f61;
+  border-top: 2px solid #a3632f;
+  border-left: 2px solid #a3632f;}
+.btn-wide{
   width: calc(100% / 2);
+}
+.bg-orange{
+  background: #D84;
+}
+
+.bg-grey{
+  background-color: #CCC;
 }
 
 @keyframes App-logo-spin {
