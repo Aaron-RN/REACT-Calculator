@@ -1,27 +1,33 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Button(props) {
-  const { onClick, name } = props;
-  const isZero = name === '0' ? 'btn-zero' : false;
+const Button = ({
+  onClick, name, color, wide,
+}) => {
+  const isZero = wide ? ' btn-wide' : '';
   return (
     <button
-      className={`btn ${isZero}`}
+      className={`btn${isZero}`}
+      style={{ backgroundColor: color }}
       type="button"
       onClick={onClick}
     >
       {name}
     </button>
   );
-}
+};
 
 // Specifies the default values for props:
 Button.defaultProps = {
   name: null,
   onClick: null,
+  color: '#D84',
+  wide: false,
 };
 
 Button.propTypes = {
+  color: PropTypes.string,
+  wide: PropTypes.bool,
   name: PropTypes.string,
   onClick: PropTypes.func,
 };
