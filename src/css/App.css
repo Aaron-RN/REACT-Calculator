@@ -48,6 +48,7 @@
 
 .display {
   position: relative;
+  overflow: hidden;
   height: 100px;
   display: flex;
   flex-direction: row;

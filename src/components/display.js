@@ -13,12 +13,10 @@ const Display = ({ value, history }) => (
 // Specifies the default values for props:
 Display.defaultProps = {
   value: '0',
-  history: '',
 };
 
 Display.propTypes = {
   value: PropTypes.string,
-  history: PropTypes.string,
 };
 
 export default Display;
