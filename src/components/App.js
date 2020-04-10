@@ -62,7 +62,6 @@ class App extends React.Component {
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
       const hist = `${history + (next || calcResult.next) + btn + result} `;
-      calcResult.total = '';
       calcResult.next = '';
       this.handleState(calcResult, result, hist);
       return;
