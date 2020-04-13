@@ -22,8 +22,11 @@ function calculate(obj, btn) {
     if (isNext) { return { total, next: result.toString(), operation }; }
     return { total: result.toString(), next, operation };
   }
-  if (btn === '+' || btn === '-' || btn === 'x' || btn === '÷' || btn === '%') {
+  if (btn === '+' || btn === '-' || btn === 'x' || btn === '÷') {
     return { total: operate(total, next, operation), next: '', operation: btn };
+  }
+  if (btn === '%') {
+    return { total: operate(total, next, btn), next: '', operation: null };
   }
   if (btn === '.') {
     const patt = new RegExp('[.]');

@@ -40,7 +40,7 @@ class App extends React.Component {
     const { calculation, history, result } = this.state;
     const { total, next, operation } = calculation;
     const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const functions = ['+', '-', 'x', '÷', '%'];
+    const functions = ['+', '-', 'x', '÷'];
     if (btn === 'AC') {
       this.resetCalc();
       return;
@@ -57,6 +57,13 @@ class App extends React.Component {
       this.handleState(calcResult, result, history);
       return;
     }
+    if (btn === '%') {
+      const calcResult = calculate(calculation, btn);
+      const result = calcResult.total;
+      const hist = `${history + total + btn}=${result} `;
+      this.handleState(calcResult, result, hist);
+      return;
+    }
     if (btn === '=') {
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
@@ -66,7 +73,7 @@ class App extends React.Component {
       this.handleState(calcResult, result, hist);
       return;
     }
-    // If not operation has been chosen and a number button is pressed
+    // If no operation has been chosen and a number button is pressed
     // this number is selected as the total value
     if (!operation && numbers.indexOf(btn) !== -1) {
       const calc = { total: total + btn, next, operation };
