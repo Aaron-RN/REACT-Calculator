@@ -76,6 +76,7 @@ class App extends React.Component {
         const result = calcResult.total;
         if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
         const hist = `${history + (next || calcResult.next) + btn + result} `;
+        calcResult.total = '';
         calcResult.next = '';
         this.handleState(calcResult, result, hist);
         return;
@@ -85,10 +86,18 @@ class App extends React.Component {
     if ((shiftKey && shiftFunctions.indexOf(keyCode) !== -1) || functions.indexOf(keyCode) !== -1) {
       btn = convertKeyToBtn(keyCode);
 
+      if (btn === '%') {
+        const calcResult = calculate(calculation, btn);
+        const result = calcResult.total;
+        const hist = `${history + total + btn}=${result} `;
+        this.handleState(calcResult, result, hist);
+        return;
+      }
       if (!operation) {
         // If no operation has been chosen and a non numeric button is pressed...
-        const calc = { total, next, operation: btn };
-        const historyNew = total ? history + total + btn : `0${btn}`;
+        const newTotal = total === '' ? result : total;
+        const calc = { total: newTotal, next, operation: btn };
+        const historyNew = newTotal ? history + newTotal + btn : `0${btn}`;
         this.handleState(calc, result, historyNew);
       } else if (operation && (total || next)) {
         // If the calculator already has values for total, next and operation states...
@@ -108,7 +117,7 @@ class App extends React.Component {
     const { calculation, history, result } = this.state;
     const { total, next, operation } = calculation;
     const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const functions = ['+', '-', 'x', '÷', '%'];
+    const functions = ['+', '-', 'x', '÷'];
     if (btn === 'AC') {
       this.resetCalc();
       return;
@@ -125,11 +134,19 @@ class App extends React.Component {
       this.handleState(calcResult, result, history);
       return;
     }
+    if (btn === '%') {
+      const calcResult = calculate(calculation, btn);
+      const result = calcResult.total;
+      const hist = `${history + total + btn}=${result} `;
+      this.handleState(calcResult, result, hist);
+      return;
+    }
     if (btn === '=') {
       const calcResult = calculate(calculation, btn);
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
       const hist = `${history + (next || calcResult.next) + btn + result} `;
+      calcResult.total = '';
       calcResult.next = '';
       this.handleState(calcResult, result, hist);
       return;
@@ -145,8 +162,9 @@ class App extends React.Component {
       this.handleState(calc, next + btn, history);
     } else if (!operation && functions.indexOf(btn) !== -1) {
       // If no operation has been chosen and a non numeric button is pressed...
-      const calc = { total, next, operation: btn };
-      const historyNew = total ? history + total + btn : `0${btn}`;
+      const newTotal = total === '' ? result : total;
+      const calc = { total: newTotal, next, operation: btn };
+      const historyNew = newTotal ? history + newTotal + btn : `0${btn}`;
       this.handleState(calc, result, historyNew);
     } else if (operation && (total || next)) {
       // If the calculator already has values for total, next and operation states...
