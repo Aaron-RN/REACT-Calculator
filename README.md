@@ -10,9 +10,23 @@ In this project you will learn how to build a very simple React application. You
 - HTML, CSS
 - JavaScript
 - Node.js
-- React
+- React.js
 
-## Authors
+## Setup
+
+### Install Dependencies
+
+```
+$ npm install
+```
+
+### Run Application
+
+```
+$ npm run start
+```
+
+## Author
 
 👤 **Aaron Rory**
 

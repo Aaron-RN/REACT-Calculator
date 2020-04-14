@@ -14,6 +14,9 @@ function operate(numOne, numTwo, operation) {
     return x.div(y).toString();
   }
   if (operation === '%') {
+    return (x.div(100)).toString();
+  }
+  if (operation === 'mod') {
     if (y.eq(0)) { return 'Cannot divide by Zero'; }
     return x.mod(y).toString();
   }

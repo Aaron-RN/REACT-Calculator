@@ -24,10 +24,26 @@
   min-width: 420px;
   margin: 40px auto;
   overflow: hidden;
+  background-color: #000;
   border: 2px solid #000;
-  border-right-color: #999;
-  border-bottom-color: #666;
-  box-shadow: 14px 22px 30px #333;
+  border-top-color: #999;
+  border-left-color: #666;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  box-shadow: 8px 12px 18px #555;
+}
+
+.history{
+  display: flex;
+  position: absolute;
+  font-size: 15px;
+  color: grey;
+  top:10%;
+  right: 60px;
+  text-align: right;
+  height: 20px;
+  overflow: hidden;
+  max-width: 90%;
 }
 
 .display {
@@ -61,6 +77,7 @@
   display: flex;
   height: 100px;
   overflow: visible;
+  background-color: #000;
 }
 
 .btn{
