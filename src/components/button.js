@@ -7,6 +7,7 @@ const Button = ({
   const isZero = wide ? ' btn-wide' : '';
   return (
     <button
+      id={name}
       className={`btn${isZero}`}
       style={{ backgroundColor: color }}
       type="button"
