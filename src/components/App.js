@@ -69,6 +69,7 @@ class App extends React.Component {
       const result = calcResult.total;
       if (result === 'Cannot divide by Zero') { this.resetCalc(result); return; }
       const hist = `${history + (next || calcResult.next) + btn + result} `;
+      calcResult.total = '';
       calcResult.next = '';
       this.handleState(calcResult, result, hist);
       return;
@@ -84,8 +85,9 @@ class App extends React.Component {
       this.handleState(calc, next + btn, history);
     } else if (!operation && functions.indexOf(btn) !== -1) {
       // If no operation has been chosen and a non numeric button is pressed...
-      const calc = { total, next, operation: btn };
-      const historyNew = total ? history + total + btn : `0${btn}`;
+      const newTotal = total === '' ? result : total;
+      const calc = { total: newTotal, next, operation: btn };
+      const historyNew = newTotal ? history + newTotal + btn : `0${btn}`;
       this.handleState(calc, result, historyNew);
     } else if (operation && (total || next)) {
       // If the calculator already has values for total, next and operation states...
